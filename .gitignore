@@ -1,4 +1,4 @@
 raw_data/
-.ipynb
+*.npy
 .env
 notebooks/seg-X.npy
