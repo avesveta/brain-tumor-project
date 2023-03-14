@@ -2,3 +2,4 @@ raw_data/
 *.npy
 .env
 *.npy
+seg_UNET_baseline/model_glioma_seg_nii_UNET_baseline
