@@ -2,3 +2,5 @@ raw_data/
 *.npy
 .env
 *.npy
+model_glioma_flair_nii_3dUnet
+model_glioma_t1ce_nii_3dUnet
