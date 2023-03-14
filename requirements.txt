@@ -5,6 +5,8 @@ numpy == 1.24.2
 matplotlib == 3.7.1
 seaborn == 0.12.2
 scikit-learn == 1.2.1
-tensorflow == 2.11.0
+tensorflow-macos==2.10.0; sys_platform == 'darwin' and 'ARM' in platform_version # Mac M-chips
+tensorflow==2.10.0; sys_platform == 'darwin' and 'ARM' not in platform_version # Mac Intel chips
+tensorflow==2.10.0; sys_platform != 'darwin' # Windows & Ubuntu Intel chips
 nibabel == 5.0.1
 SciKeras == 0.10.0
