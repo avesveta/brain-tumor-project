@@ -1,3 +1,10 @@
+from google.cloud import storage
+import os
+import nibabel as nib
+import pandas as pd
+import numpy as np
+
+
 def load_nii_from_gcp(filename:str,cache_folder_path):
     r"""Load file given filename, from GCP or direktly from cache_folder
 
@@ -13,9 +20,6 @@ def load_nii_from_gcp(filename:str,cache_folder_path):
     img : ``SpatialImage``
        Image of guessed type
     """
-    from google.cloud import storage
-    import os
-    import nibabel as nib
 
 
     #make the connection to GCP
@@ -36,3 +40,17 @@ def load_nii_from_gcp(filename:str,cache_folder_path):
 
     img = nib.load(cache_file_path)
     return img
+
+def save_nii_to_pkl(cache_folder_path,pkl_path,channel):
+    # Path
+    path = cache_folder_path
+
+    #upload channel
+    channel # t1,t2,flair,t1ce,seg
+    #
+    df = pd.read_csv('raw_data/name_mapping_2020.csv')
+    df = df.drop(columns=['BraTS_2017_subject_ID', 'BraTS_2018_subject_ID',
+                            'BraTS_2019_subject_ID', 'TCGA_TCIA_subject_ID'])
+    df['Grade'].value_counts()
+    df[f'{channel}_nii']= df['BraTS_2020_subject_ID'].apply(lambda x: np.array(load_nii_from_gcp(x+f'_{channel}.nii',path).dataobj))
+    df.to_pickle(pkl_path)
