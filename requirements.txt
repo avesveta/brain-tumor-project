@@ -11,3 +11,5 @@ tensorflow==2.10.0; sys_platform != 'darwin' # Windows & Ubuntu Intel chips
 nibabel == 5.0.1
 SciKeras == 0.10.0
 imbalanced-learn == 0.10.1
+fastapi == 0.94.1 #deploy a solid running API
+uvicorn == 0.21.0
