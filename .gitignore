@@ -1,4 +1,7 @@
 raw_data/
 *.npy
 .env
-notebooks/seg-X.npy
+*.npy
+seg_UNET_baseline/model_glioma_seg_nii_UNET_baseline
+model_glioma_flair_nii_3dUnet
+model_glioma_t1ce_nii_3dUnet
