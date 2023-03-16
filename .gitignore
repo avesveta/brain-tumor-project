@@ -2,3 +2,4 @@ raw_data/
 *.npy
 .env
 notebooks/seg-X.npy
+*.h5
