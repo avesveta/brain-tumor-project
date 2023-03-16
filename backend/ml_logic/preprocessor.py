@@ -81,7 +81,10 @@ def preprocess_nii_for_test(nii_file):
                                MIN_DEPTH:MAX_DEPTH]
 
     img_data_choped = np.array(img_data_choped) # not sure if that works
-    print(img_data_choped.shape)
+
     img_data_choped[img_data_choped>840]=840 # set the max value to 840
     img_data_choped = (img_data_choped - 0)/840 # Min-Max Scaler
+    img_data_choped = img_data_choped.reshape(1, img_data_choped.shape[0],
+                                              img_data_choped.shape[1], img_data_choped.shape[2], 1)
+    print(img_data_choped.shape)
     return img_data_choped
