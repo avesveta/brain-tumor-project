@@ -40,7 +40,13 @@ async def predict(file: UploadFile = File(...)):
     file_path.unlink()
 
     # Make predictions using the saved model
-    predictions = model.predict(processed_img_data)
+    predictions = (model.predict(processed_img_data) > 0.5).astype("int32")
+    prediction = int(predictions[0][0])
+    if prediction == 0:
+        prediction_str = 'the tumor is a low-grade glioma'
+    else:
+        prediction_str = 'the tumor is a high-grade glioma'
+
 
     # Return the predictions
-    return {"predictions": predictions}
+    return {"predictions": prediction_str}
