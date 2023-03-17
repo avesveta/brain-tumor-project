@@ -16,13 +16,12 @@ MODEL_PATH = Path('saved_models', MODEL_FILE_NAME) # set the path where you want
 dir = Path.cwd()
 
 @app.post("/predict")
-async def predict(file: UploadFile = File(...)):
-    return {"file_size": len(file)}
-
+async def upload_predict(file: UploadFile = File(...)):
+    
     def make_tmp_file(upload_file: UploadFile) -> Path:
         try:
             suffix = Path(upload_file.filename).suffix
-            with NamedTemporaryFile(delete=False, suffix=suffix, dir=dir) as tmp:
+            with NamedTemporaryFile(delete=False, suffix='.nii', dir=dir) as tmp:
                 shutil.copyfileobj(upload_file.file, tmp)
                 tmp_path = Path(tmp.name)
         finally:
@@ -52,6 +51,11 @@ async def predict(file: UploadFile = File(...)):
     # Return the predictions
     return {"predictions": prediction_str}
 
-@app.get("/hello")
-async def hello():
-    return {"predictions": 'hello'}
+
+@app.post("/uploadfile/")
+async def create_upload_file(file: UploadFile):
+    return {"what": file.file}
+
+@app.get("/")
+def hello():
+    return {"Hello": 'hello to MRI API'}
