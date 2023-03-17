@@ -17,6 +17,7 @@ dir = Path.cwd()
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
+    return {"file_size": len(file)}
 
     def make_tmp_file(upload_file: UploadFile) -> Path:
         try:
@@ -50,3 +51,7 @@ async def predict(file: UploadFile = File(...)):
 
     # Return the predictions
     return {"predictions": prediction_str}
+
+@app.get("/hello")
+async def hello():
+    return {"predictions": 'hello'}
