@@ -1,2 +1,2 @@
 # Brain-tumor-project
-An attempt to classify gliomas and predict patients'life expectancy
+A deployed project with two NN models that classify gliomas types and predict patients' life expectancy based on MRI brain images
